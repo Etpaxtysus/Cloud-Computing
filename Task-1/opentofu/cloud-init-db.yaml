@@ -1,7 +1,0 @@
-#cloud-config
-packages:
-  - openssh-server
-
-runcmd:
-  - systemctl enable ssh
-  - systemctl start ssh
