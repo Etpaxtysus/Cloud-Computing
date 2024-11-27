@@ -55,6 +55,7 @@
       - php8.0-gd
       - libapache2-mod-php8.0
       - phpmyadmin
+      - debconf-utils
     state: present
     update_cache: true
 
@@ -65,11 +66,11 @@
     value: "{{ item.value }}"
     vtype: "{{ item.vtype }}"
   loop:
-    - { question: 'phpmyadmin/dbconfig-install', value: 'true', vtype: 'boolean' }
-    - { question: 'phpmyadmin/app-password-confirm', value: '{{ db_pass }}', vtype: 'password' }
-    - { question: 'phpmyadmin/mysql/admin-pass', value: '{{ db_pass }}', vtype: 'password' }
-    - { question: 'phpmyadmin/mysql/app-pass', value: '{{ db_pass }}', vtype: 'password' }
-    - { question: 'phpmyadmin/reconfigure-webserver', value: 'apache2', vtype: 'multiselect' }
+    - { name: 'phpmyadmin', question: 'phpmyadmin/dbconfig-install', value: 'true', vtype: 'boolean' }
+    - { name: 'phpmyadmin', question: 'phpmyadmin/app-password-confirm', value: 'password', vtype: 'password' }
+    - { name: 'phpmyadmin', question: 'phpmyadmin/mysql/admin-pass', value: '{{ db_pass }}', vtype: 'password' }
+    - { name: 'phpmyadmin', question: 'phpmyadmin/mysql/app-pass', value: '{{ db_pass }}', vtype: 'password' }
+    - { name: 'phpmyadmin', question: 'phpmyadmin/reconfigure-webserver', value: 'apache2', vtype: 'multiselect' }
 
 - name: Configure phpMyAdmin Apache
   ansible.builtin.template:
