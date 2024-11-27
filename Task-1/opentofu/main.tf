@@ -2,6 +2,7 @@ terraform {
   required_providers {
     libvirt = {
       source = "dmacvicar/libvirt"
+      version = "0.8.1"
     }
   }
 }
@@ -61,7 +62,7 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 
 resource "libvirt_domain" "ubuntu" {
   count  = length(var.vm)
-  name   = var.vm_hostnames[count.index]
+  name   = var.vm[count.index]
   memory = "1024"
   vcpu   = 1
 
@@ -70,7 +71,7 @@ resource "libvirt_domain" "ubuntu" {
   network_interface {
     network_name   = "default"
     wait_for_lease = true
-    hostname       = var.vm_hostnames[count.index]
+    hostname       = var.vm[count.index]
   }
 
   console {

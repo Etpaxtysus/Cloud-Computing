@@ -31,3 +31,8 @@ sudo virsh pool-list --all
 sudo virsh pool-destroy default
 sudo virsh pool-undefine default
 ```
+
+Untuk Cek VM yang sedang running :
+```
+virsh list
+```
