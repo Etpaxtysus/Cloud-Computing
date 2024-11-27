@@ -1,0 +1,23 @@
+#cloud-config
+runcmd:
+  - sed -i '/PermitRootLogin/d' /etc/ssh/sshd_config
+  - echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+  - systemctl restart sshd
+ssh_pwauth: true
+disable_root: false
+chpasswd:
+  list: |
+    root:password
+  expire: false
+users:
+  - name: ubuntu
+    gecos: ubuntu
+    groups:
+      - sudo
+    sudo:
+      - ALL=(ALL) NOPASSWD:ALL
+    home: /home/ubuntu
+    shell: /bin/bash
+    lock_passwd: false
+    ssh_authorized_keys:
+      - ssh-rsa AAAA...
