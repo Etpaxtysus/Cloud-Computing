@@ -1,0 +1,4 @@
+---
+db_name: my_db
+db_user: myuser
+db_pass: 'password' 

@@ -1,0 +1,14 @@
+---
+- name: Setup Apache Web Server
+  hosts: vm1
+  become: true
+  remote_user: root
+  roles:
+    - apache
+
+- name: phpMyAdmin & MySQL
+  hosts: vm2
+  become: true
+  remote_user: root
+  roles:
+    - phpmyadmin
