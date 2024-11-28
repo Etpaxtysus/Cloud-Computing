@@ -1,0 +1,2 @@
+cd opentofu 
+tofu destroy
