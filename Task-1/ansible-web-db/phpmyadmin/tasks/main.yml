@@ -84,7 +84,7 @@
   ansible.builtin.command:
     cmd: a2enconf phpmyadmin.conf
   notify:
-    - Restart apache
+    - Restart Apache
 
 - name: Enable PHP module
   ansible.builtin.command:

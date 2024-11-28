@@ -100,10 +100,12 @@ resource "libvirt_domain" "ubuntu" {
 
 }
 
+   output "web_server_ip" {
+    value = libvirt_domain.ubuntu[1].network_interface[0].addresses[0]
+  }
+
   output "db_server_ip" {
   value = libvirt_domain.ubuntu[0].network_interface[0].addresses[0]
   }
 
-  output "web_server_ip" {
-    value = libvirt_domain.ubuntu[1].network_interface[0].addresses[0]
-  }
+ 
