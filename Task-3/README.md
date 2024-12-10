@@ -78,9 +78,34 @@ Akses page `phpMyAdmin`dengan pada browser dengan cara menuliskan:
 ```
 http://localhost:10000
 ```
-Login dengan kredensial berikut :
+Login `phpMyAdmin` dengan kredensial berikut :
 ```
 username : root
 password : mydb6789tyui
+```
+
+### Case 5 :
+
+Masuk ke dalam direktori `case5` terlebih dahulu:
+
+```
+cd compose/case5
+```
+Lalu jalankan dengan command:
+```
+docker compose up -d
+```
+Akses pada `WordPress` dengan cara menuliskan:
+```
+http://localhost:8080
+```
+Akses page `phpMyAdmin`dengan pada browser dengan cara menuliskan:
+```
+http://localhost:8081
+```
+Login `phpMyAdmin`dengan kredensial berikut :
+```
+username : root
+password : examplepassword
 ```
 
