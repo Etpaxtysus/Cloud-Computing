@@ -73,6 +73,7 @@ docker compose up -d
 Akses pada browser dengan cara menuliskan:
 ```
 http://localhost:34001
+```
 Akses page `phpMyAdmin`dengan pada browser dengan cara menuliskan:
 ```
 http://localhost:10000
