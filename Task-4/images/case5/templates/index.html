@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Log App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Flask Log App</h1>
+    <p>Use the buttons below to interact with the application:</p>
+
+    <button class="button" onclick="checkLogs()">Check Logs</button>
+    <button class="button" onclick="addCustomLog()">Add Custom Log</button>
+
+    <div id="logOutput" style="margin-top: 20px; border: 1px solid #ddd; padding: 10px; display: none;">
+        <h3>Logs:</h3>
+        <pre id="logs"></pre>
+    </div>
+
+    <script>
+        async function checkLogs() {
+            const response = await fetch("/logs");
+            const data = await response.json();
+            const logDiv = document.getElementById("logOutput");
+            const logs = document.getElementById("logs");
+            
+            if (data.logs) {
+                logs.textContent = data.logs.join("\n");
+            } else {
+                logs.textContent = "No logs found!";
+            }
+            logDiv.style.display = "block";
+        }
+
+        async function addCustomLog() {
+            const message = prompt("Enter a custom log message:");
+            if (!message) return;
+
+            const response = await fetch("/write-log", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message }),
+            });
+
+            const data = await response.json();
+            if (data.status === "success") {
+                alert("Custom log added successfully!");
+            } else {
+                alert("Failed to add custom log.");
+            }
+        }
+    </script>
+</body>
+</html>
